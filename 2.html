@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Your Temperature Tracker
+        </title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/jspdf-autotable"></script>
+        <script>
+        function fill_name(){
+            let YourName = document.querySelector("#YourName").value;
+             var table = document.getElementById("MyTable");
+            table.rows[0].cells[0].innerHTML=YourName;
+        }
+    </script>
+    <script>
+        function dates_autofill(){
+            var table = document.getElementById("MyTable");
+            let date=document.querySelector("#Date").value;
+            let newDate = new Date(date);
+            for (i=0; i<15;i++){
+
+            ms=newDate.getTime() + 86400000;
+            newDate=new Date(ms);
+            var date_f = newDate.getDate() + "-"+ (newDate.getMonth()+1) +"-"+ newDate.getFullYear();
+            table.rows[1+i].cells[1].innerHTML=date_f;
+            table.rows[1+i].cells[0].innerHTML=1+i;
+            }
+        }
+    </script>
+
+    </head>
+    <body id="body_temperature">
+        <h1 id="h1_temperature">
+            Your Temperature Tracker
+        </h1>
+        <button class="buttons_breathe" id="main_page">Return to Main Page</button>        <button class="buttons_breathe" id="breathe">Not Feeling well? Try This !</button>
+     <script>
+            document.querySelector("#main_page").onclick = function(){
+            window.open("https://66d2b596-20b0-425b-b514-6f2a07dcdfa9-ide.cs50.xyz:8080/1.html");
+            }
+    </script>
+    <script>
+            document.querySelector("#breathe").onclick = function(){
+            window.open("https://66d2b596-20b0-425b-b514-6f2a07dcdfa9-ide.cs50.xyz:8080/3.html");
+            }
+    </script>
+
+    <br>
+
+        <p>
+            Please fill the following temperature tracker. The form will serve as record of your morning and evening temperature. It can be saved as pdf and e-mail to the authorities or printed out.
+
+        </p>
+        <h2>
+            Instructions how to fill the form
+        </h2>
+        <p>
+            Try to take the temperature twice a day. In the morning between 7.am. and 9.am and in the evenings between 6.pm and 8.pm.
+            Do not drink anything hot right immediately before taking your temperature, do not sunbath. Also avoid working out.
+            If your temperature keeps rising or you experience fever, contact medical service provider.
+        </p>
+        <p>
+           <form class="form" onsubmit="fill_name();return false;">
+               <input type="text" id="YourName">
+               <input type="submit" value="Insert Your Name">
+            </form>
+        </p>
+        <p>
+           <form class="form" onsubmit="dates_autofill();return false";>
+            <input type="date" id="Date" placeholder="dd-mm-yyyy" value="">
+               <input type="submit" value="Insert Date of First Record">
+           </form>
+        </p>
+        <p id="blank">
+        </p>
+        <div id="Form">
+        </p>
+        <table id="MyTable";>
+            <tr class="header">
+                <td>Day No.</td>
+                  <td>Date</td>
+                    <td>Morning Time</td>
+                      <td>Morning Temp</td>
+                        <td>Evening Time</td>
+                          <td>Evening Temp</td>
+            </tr>
+        </table>
+        </div>
+        <div id="elementH"></div>
+        <script>
+        function addRow(tableID) {
+
+        let tableRef = document.getElementById(tableID);
+
+        let newRow = tableRef.insertRow(-1);
+
+        let newCell_0 = newRow.insertCell(0);
+        let newCell_1 = newRow.insertCell(1);
+        let newCell_2 = newRow.insertCell(2);
+        let newCell_3 = newRow.insertCell(3);
+        let newCell_4 = newRow.insertCell(4);
+        let newCell_5 = newRow.insertCell(5);
+    }
+
+        for (i=0;i<15;i++)
+            {
+                addRow("MyTable");
+            }
+        </script>
+        <br>
+        <button id="cmd">Download Your Tracker</button>
+
+
+        <script>
+        document.querySelector("#cmd").onclick=function(){
+
+            var doc = new jsPDF()
+            doc.autoTable({ html: '#MyTable' })
+            doc.save('Your Temperature Tracker.pdf')
+
+        };
+
+        // The following will save entire section of Html id="Form", but the table inside is not formatted:
+        // var elementHTML = $('#Form').html();
+        // var specialElementHandlers = {
+        // '#elementH': function (element, renderer) {
+        // return true;
+        // }
+        // };
+        // doc.fromHTML(elementHTML, 15, 15, {
+        // 'width': 170,
+        // 'elementHandlers': specialElementHandlers
+        // });
+        // doc.save('Your Temperature Tracker.pdf');
+        // };
+        </script>
+  </body>
+</html>

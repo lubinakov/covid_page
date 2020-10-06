@@ -1,0 +1,92 @@
+
+h1
+{
+    font-size: 32px;
+}
+h2
+{
+    color: grey;
+    font-weight: bold;
+}
+
+table
+{
+    border:2px solid grey;
+    color:grey;
+}
+
+.header td
+{
+    background-color: Pink;
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+}
+
+td
+{
+    color: grey;
+    border: 1px solid grey;
+    height: 15px;
+    width:120px;
+    text-align: center;
+    padding: 5px;
+    font-size:14px;
+}
+
+#1p, #blank, #2p
+{
+    margin-top:200px;
+}
+
+#h2_breathe, #h1_temperature
+{
+    font-size:30px;
+    color:grey;
+    font-weight:bold;
+}
+
+#h3
+{
+    color:grey;
+    font-weight:bold;
+}
+
+#body_main, #body_3, #body_temperature
+{
+    font-family:helvetica;
+    color:grey;
+    font-size:15px;
+    width: 700px;
+    margin-top:50px;
+    margin-right:50px;
+    margin-left:100px;
+    margin-bottom:50px;
+    text-align:justify;
+}
+
+.buttons_breathe
+{
+    border: 1px grey solid;
+    background-color: Pink;
+    color:white;
+    font-size:15px;
+}
+
+.form
+{
+    color: grey;
+}
+
+#date
+{
+    color:grey;
+}
+
+#embassy, #state
+{
+    background-color: pink;
+    border: 1px grey solid;
+    color:white;
+    font-size:15px;
+}

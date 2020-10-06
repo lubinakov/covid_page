@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <title>
+         Daily Covid Info
+        </title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="countries.js"></script>
+        <script src="regions2.js"></script>
+        <script>
+                function populateStates()
+                {
+                    var states = Object.keys(isoCountries);
+                    for (i=0; i < states.length; i++)
+                    {
+                       document.getElementById("state").innerHTML += "<option>" + states[i] + "</option>";
+                    }
+                    console.log("populateStates executed")
+                }
+                function init()
+                {
+                    populateStates();
+                }
+        </script>
+    </head>
+    <body id="body_main" onload="init();">
+            <image src="covid_image.jpg" width=700 height=300></image>
+        <h1>
+            COVID-19 QUICK FACTS
+        </h1>
+        <br>
+        <h2>Find Number of covid-19 cases in any country, get U.S. Government Travel Recommendation, dowload Temperature Tracker and more
+        </h2>
+        <br>
+        <h3>Country Covid-19 Statistics:</h3>
+        <p>
+            This webpage enables you to have a quick access to up-to-date covid-19 related information for any country. By selecting state you will be redirected to World Health Organization webpage with  covid-19 statistics for the state you selected.
+        <br>
+        <p>
+            <select id="state">
+                    <option>Please Select Your State</option>
+            </select>
+        </p>
+        <br>
+        <script>
+            document.querySelector("#state").onchange=function(){
+
+                    let country=document.querySelector("#state").value;
+                    let code=isoCountries[country].toLowerCase();
+                    for (var key of Object.keys(regions))
+                        {
+                            if (regions[key].includes(country) === true)
+                        {
+                            window.open("https://covid19.who.int/region/" + key + "/country/"+ code, "blank");
+                        }
+                    }
+                }
+        </script>
+        <h3>Get Travel and Covid-19 Information via U.S. Embassy webpage</h3>
+        <p>
+             If you are interested in more detailed information related to current travel protocols, you can check whether there is U.S. Embassy in the selected country. Provided, there is one, with one click you will be redirected there so you can get travel informations.
+        </p>
+        <p>
+            <button id="embassy"> Find if U.S. Embassy Information in the Selected Country</button>
+        </p>
+        <br>
+        <h3>Download Your Temperature Tracker</h3>
+        <p>
+            As many countries requires tracking of your temperature upon arrival, you will find a section "Your Temperature Tracker" with a free pdf form for 14-day temperature tracking. You can download the form with your name and dates and provide it to local authorities if requested.
+        </p>
+        <script>
+            document.querySelector("#embassy").onclick = function(){
+                   let country=document.querySelector("#state").value;
+                      let code=isoCountries[country].toLowerCase();
+            window.open("https://" + code + ".usembassy.gov");
+            }
+        </script>
+            <button class="buttons_breathe" id="temperature_tracker">Download Free Temperature Tracker</button>
+        <script>
+            document.querySelector("#temperature_tracker").onclick = function(){
+            window.open("https://66d2b596-20b0-425b-b514-6f2a07dcdfa9-ide.cs50.xyz:8080/2.html");
+            }
+        </script>
+        <br>
+        <br>
+        <h3>... and Breathe</h3>
+        <p>
+            In times of current pandemic, many people feel stressed on a daily basis. If you are feeling anxious, you are directly impacting your immune system in a negative way. The good news is that you do not need to tackle this with medication. There are more natural and healthier remedies which you can integrate into your life.
+        </p>
+        <button class="buttons_breathe" id="breathe">Not Feeling Well? Try This Quick Help</button>
+
+        <script>
+            document.querySelector("#breathe").onclick = function(){
+            window.open("https://66d2b596-20b0-425b-b514-6f2a07dcdfa9-ide.cs50.xyz:8080/3.html");
+            }
+        </script>
+
+    </body>
+</html>
